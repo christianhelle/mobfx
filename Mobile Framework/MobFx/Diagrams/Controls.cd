@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ChristianHelle.Framework.WindowsMobile.Forms.BatteryLife" Collapsed="true">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQKEAQAAAGAQAwACSMABAABKgAAAAAgAAAAUAABAAAA=</HashCode>
+      <FileName>Forms\BatteryLife.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChristianHelle.Framework.WindowsMobile.Forms.ButtonEx" Collapsed="true">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQCgAQAAIKAAACCAAAAQBAJAAAAAAAAIIBAAAAACAAE=</HashCode>
+      <FileName>Forms\ButtonEx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChristianHelle.Framework.WindowsMobile.Forms.MobileForm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.25" Y="1.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AACAAAAABEAAAABAQAAAAAgCAAAAAAAAAAAAgABAgAA=</HashCode>
+      <FileName>Forms\MobileForm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ChristianHelle.Framework.WindowsMobile.Forms.LabelEx" Collapsed="true">
+    <Position X="2.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACmAAAAAAAgAAAAAAAACAAkAAAAAQAAAAACCAAAAAA=</HashCode>
+      <FileName>Forms\LabelEx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChristianHelle.Framework.WindowsMobile.Forms.OwnerDrawnBase" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAQAAAAAAAQAAAAQAAAAAAAAAChAA=</HashCode>
+      <FileName>Forms\OwnerDrawnBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChristianHelle.Framework.WindowsMobile.Forms.PictureBoxEx" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAIEAAAAAAAABAABAAAAAAAABEAIAAAAAACICA=</HashCode>
+      <FileName>Forms\PictureBoxEx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChristianHelle.Framework.WindowsMobile.Forms.TransparentControl" Collapsed="true">
+    <Position X="2.5" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QQAAAEAAAAAAAAAgAAAAQAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Forms\TransparentControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChristianHelle.Framework.WindowsMobile.Forms.ImageButton" Collapsed="true">
+    <Position X="7" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABCgAQAAACAAAAAAAAAAAABAEAAAIBAIASAAAAAAAAA=</HashCode>
+      <FileName>Forms\ImageButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChristianHelle.Framework.WindowsMobile.Forms.TransparentButton" Collapsed="true">
+    <Position X="7" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAIAAAAAACgAA=</HashCode>
+      <FileName>Forms\TransparentButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChristianHelle.Framework.WindowsMobile.Forms.MobileUserControl" Collapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAABGAAAABAQACAAAgCAAAAAAAAAAAAgABAgAA=</HashCode>
+      <FileName>Forms\MobileUserControl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ChristianHelle.Framework.WindowsMobile.Forms.Sidebar" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQCAAAEAAAAQgAAAABIAAACAAAAAAAAAAAACAAAAhgA=</HashCode>
+      <FileName>Forms\Sidebar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Windows.Forms.Control" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="ChristianHelle.Framework.WindowsMobile.Forms.IControlBackground" Collapsed="true">
+    <Position X="7.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Forms\IControlBackground.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

@@ -1,0 +1,325 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{97B2B896-736D-4F01-BC7D-4C431E013665}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ChristianHelle.Framework.WindowsMobile</RootNamespace>
+    <AssemblyName>MobFx</AssemblyName>
+    <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PlatformFamilyName>WindowsCE</PlatformFamilyName>
+    <PlatformID>E2BECB1F-8C8C-41ba-B736-9BE7D946A398</PlatformID>
+    <OSVersion>5.0</OSVersion>
+    <DeployDirSuffix>MobFx</DeployDirSuffix>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <NativePlatformName>Windows CE</NativePlatformName>
+    <FormFactorID>
+    </FormFactorID>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Intermec.DataCollection.CF2, Version=2.0.0.4, Culture=neutral, PublicKeyToken=acd169b56b6148ba, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Intermec.DataCollection.CF2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsCE.Forms" />
+    <Reference Include="mscorlib" />
+    <Reference Include="Symbol, Version=1.5.1.1, Culture=neutral, PublicKeyToken=68ec8db391f150ca">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Symbol.dll</HintPath>
+    </Reference>
+    <Reference Include="Symbol.Audio, Version=1.6.1.2, Culture=neutral, PublicKeyToken=68ec8db391f150ca">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Symbol\Symbol.Audio.dll</HintPath>
+    </Reference>
+    <Reference Include="Symbol.Barcode, Version=1.5.1.1, Culture=neutral, PublicKeyToken=68ec8db391f150ca">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Symbol.Barcode.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Barcode\BarcodeReader.cs" />
+    <Compile Include="Barcode\BarcodeScannerFacade.cs" />
+    <Compile Include="Barcode\IBarcodeScanner.cs" />
+    <Compile Include="Barcode\ReaderFactory.cs" />
+    <Compile Include="Barcode\ScannedDataEventArgs.cs" />
+    <Compile Include="Barcode\ScannerStatus.cs" />
+    <Compile Include="Barcode\Scanners\DummyScanner.cs" />
+    <Compile Include="Barcode\Scanners\IntermecScanner.cs" />
+    <Compile Include="Barcode\Scanners\SymbolScanner.cs" />
+    <Compile Include="Barcode\TypeInitializationException.cs" />
+    <Compile Include="Configuration\ConfigurationManager.cs" />
+    <Compile Include="Core\Device.cs" />
+    <Compile Include="Core\SystemTime.cs" />
+    <Compile Include="Core\SystemWindow.cs" />
+    <Compile Include="Diagnostics\DeviceExceptionHandler.cs" />
+    <Compile Include="Diagnostics\ErrorLog.cs" />
+    <Compile Include="Diagnostics\ErrorLogFile.cs" />
+    <Compile Include="Diagnostics\ErrorMessageBuilder.cs" />
+    <Compile Include="Diagnostics\EventLogBase.cs" />
+    <Compile Include="Diagnostics\IEventLog.cs" />
+    <Compile Include="Diagnostics\LogFile.cs" />
+    <Compile Include="Diagnostics\LogFileRepository.cs" />
+    <Compile Include="Diagnostics\NewLineEventArgs.cs" />
+    <Compile Include="Drawing\ColorTranslator.cs" />
+    <Compile Include="Drawing\Dpi.cs" />
+    <Compile Include="Drawing\FontFactory.cs" />
+    <Compile Include="Drawing\GradientFillDirection.cs" />
+    <Compile Include="Drawing\GraphicsEx.cs" />
+    <Compile Include="Drawing\Hexagon.cs" />
+    <Compile Include="Drawing\ImageDrawMode.cs" />
+    <Compile Include="Drawing\ImageManipulator.cs" />
+    <Compile Include="Drawing\IShape.cs" />
+    <Compile Include="Drawing\Native\BLENDFUNCTION.cs" />
+    <Compile Include="Drawing\Native\GRADIENT_RECT.cs" />
+    <Compile Include="Drawing\Native\LOGFONT.cs" />
+    <Compile Include="Drawing\Native\NativeMethods.cs" />
+    <Compile Include="Drawing\Native\TRIVERTEX.cs" />
+    <Compile Include="Forms\BatteryChargeStatus.cs" />
+    <Compile Include="Forms\BatteryLife.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\ButtonEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\ButtonMode.cs" />
+    <Compile Include="Forms\ButtonTheme.cs" />
+    <Compile Include="Forms\FullScreenMessageBox.cs" />
+    <Compile Include="Forms\GradientButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\GradientImageButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\GraphicsExtension.cs" />
+    <Compile Include="Forms\IControlBackground.cs" />
+    <Compile Include="Forms\ImageButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\LabelEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\ListViewEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Login\LoginView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Login\LoginView.Designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MenuListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\MessagePrompt.cs" />
+    <Compile Include="Forms\MobileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MobileUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\MobileUserControl.Designer.cs">
+      <DependentUpon>MobileUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OwnerDrawnBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\OwnerDrawnList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\PictureBoxEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\PowerStatus.cs" />
+    <Compile Include="Forms\Sidebar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\SmartMenu\IAction.cs" />
+    <Compile Include="Forms\SmartMenu\ISmartMenuView.cs" />
+    <Compile Include="Forms\SmartMenu\SmartMenuButton.cs" />
+    <Compile Include="Forms\SmartMenu\SmartMenuButtonHotspot.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\SmartMenu\SmartMenuConfiguration.cs" />
+    <Compile Include="Forms\SmartMenu\SmartMenuFormView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SmartMenu\SmartMenuFormView.Designer.cs">
+      <DependentUpon>SmartMenuFormView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SmartMenu\SmartMenuItem.cs" />
+    <Compile Include="Forms\SmartMenu\SmartMenuLayout.cs" />
+    <Compile Include="Forms\SmartMenu\SmartMenuPresenter.cs" />
+    <Compile Include="Forms\SplashScreen.cs" />
+    <Compile Include="Forms\SplashScreenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SplashScreenForm.Designer.cs">
+      <DependentUpon>SplashScreenForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TextBoxEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\TransparentButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\TransparentControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\WaitCursor.cs" />
+    <Compile Include="Forms\WaitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\WaitForm.Designer.cs">
+      <DependentUpon>WaitForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IO\DirectoryEx.cs" />
+    <Compile Include="IO\FileEx.cs" />
+    <Compile Include="IO\Keys.cs" />
+    <Compile Include="IO\SerialInfo.cs" />
+    <Compile Include="IO\SerialPortInfo.cs" />
+    <Compile Include="IO\SerialPortList.cs" />
+    <Compile Include="IO\StorageCard.cs" />
+    <Compile Include="Media\ISoundPlayer.cs" />
+    <Compile Include="Media\WindowsSoundPlayer.cs" />
+    <Compile Include="Media\SoundPlayerFacade.cs" />
+    <Compile Include="Media\SoundPlayerFactory.cs" />
+    <Compile Include="Media\SymbolSoundPlayer.cs" />
+    <Compile Include="Media\SystemSound.cs" />
+    <Compile Include="Media\SystemSounds.cs" />
+    <Compile Include="MobileApplication.cs" />
+    <Compile Include="MobileApplicationException.cs" />
+    <Compile Include="Notifications.cs" />
+    <Compile Include="Patterns\FormPresenter.cs" />
+    <Compile Include="Patterns\IFormView.cs" />
+    <Compile Include="Patterns\IUserControlView.cs" />
+    <Compile Include="Patterns\IView.cs" />
+    <Compile Include="Patterns\IWizardStep.cs" />
+    <Compile Include="Patterns\IWizardView.cs" />
+    <Compile Include="Patterns\NullPresenterException.cs" />
+    <Compile Include="Patterns\Presenter.cs" />
+    <Compile Include="Patterns\Singleton.cs" />
+    <Compile Include="Patterns\UserControlPresenter.cs" />
+    <Compile Include="Patterns\ViewHelper.cs" />
+    <Compile Include="Patterns\WizardPresenter.cs" />
+    <Compile Include="Patterns\WizardStepEventArgs.cs" />
+    <Compile Include="Patterns\WizardStepPresenter.cs" />
+    <Compile Include="Patterns\Wizard\BarcodeEntryPresenter.cs" />
+    <Compile Include="Patterns\Wizard\BarcodeEntryWizardPresenter.cs" />
+    <Compile Include="Patterns\Wizard\BarcodeEventArgs.cs" />
+    <Compile Include="Patterns\Wizard\IBarcodeEntryView.cs" />
+    <Compile Include="Patterns\Wizard\WizardCache.cs" />
+    <Compile Include="Patterns\Wizard\WizardView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Patterns\Wizard\WizardView.designer.cs">
+      <DependentUpon>WizardView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TypeInstantiator.cs" />
+    <Compile Include="UnhandledFrameworkExceptionEventArgs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Login\LoginView.resx">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MobileForm.resx">
+      <DependentUpon>MobileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SmartMenu\SmartMenuFormView.resx">
+      <DependentUpon>SmartMenuFormView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SplashScreenForm.resx">
+      <DependentUpon>SplashScreenForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Patterns\Wizard\WizardView.resx">
+      <DependentUpon>WizardView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Diagrams\Controls.cd" />
+    <None Include="Forms\DesignTimeAttributes\BatteryLife.xmta" />
+    <None Include="Forms\DesignTimeAttributes\ButtonEx.xmta" />
+    <None Include="Forms\DesignTimeAttributes\ImageButton.xmta" />
+    <None Include="Forms\DesignTimeAttributes\LabelEx.xmta" />
+    <None Include="Forms\DesignTimeAttributes\MobileForm.xmta" />
+    <None Include="Forms\DesignTimeAttributes\MobileUserControl.xmta" />
+    <None Include="Forms\DesignTimeAttributes\PictureBoxEx.xmta" />
+    <None Include="Forms\DesignTimeAttributes\Sidebar.xmta" />
+    <None Include="Forms\DesignTimeAttributes\TextBoxEx.xmta" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\WaitForm.resx">
+      <DependentUpon>WaitForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\TopBar.bmp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
+        <HostingProcess disable="1" />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
