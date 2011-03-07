@@ -305,7 +305,6 @@
     <EmbeddedResource Include="Forms\WaitForm.resx">
       <DependentUpon>WaitForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\TopBar.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

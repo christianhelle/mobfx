@@ -103,7 +103,6 @@ namespace ChristianHelle.Framework.WindowsMobile.Forms
 
         private sealed class MessageBoxDlg : MobileForm
         {
-            private const string NAME = "ChristianHelle.Framework.WindowsMobile.Images.TopBar.bmp";
             private static readonly bool HiDpi;
             private static readonly bool IsWm5;
             private RectangleF bodyRect;
