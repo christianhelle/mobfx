@@ -30,18 +30,26 @@ namespace ChristianHelle.Framework.WindowsMobile.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashScreenForm));
+            this.lblLoading = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // lblLoading
+            // 
+            this.lblLoading.Location = new System.Drawing.Point(50, 110);
+            this.lblLoading.Name = "lblLoading";
+            this.lblLoading.Size = new System.Drawing.Size(100, 20);
+            this.lblLoading.Text = "Loading...";
+            this.lblLoading.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // SplashScreenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.BackgroundDrawMode = ImageDrawMode.Stretch;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(200, 240);
             this.ControlBox = false;
+            this.Controls.Add(this.lblLoading);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SplashScreenForm";
             this.Load += new System.EventHandler(this.SplashScreen_Load);
@@ -50,6 +58,8 @@ namespace ChristianHelle.Framework.WindowsMobile.Forms
         }
 
         #endregion
+
+        private System.Windows.Forms.Label lblLoading;
 
 
     }
