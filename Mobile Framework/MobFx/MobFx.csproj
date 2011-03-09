@@ -164,6 +164,7 @@
     <Compile Include="Forms\MobileUserControl.Designer.cs">
       <DependentUpon>MobileUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\NotificationBubble.cs" />
     <Compile Include="Forms\OwnerDrawnBase.cs">
       <SubType>Component</SubType>
     </Compile>
