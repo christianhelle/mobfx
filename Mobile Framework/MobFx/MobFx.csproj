@@ -234,6 +234,7 @@
     <Compile Include="MobileApplicationException.cs" />
     <Compile Include="Notifications.cs" />
     <Compile Include="Patterns\FormPresenter.cs" />
+    <Compile Include="Patterns\Guard.cs" />
     <Compile Include="Patterns\IFormView.cs" />
     <Compile Include="Patterns\IUserControlView.cs" />
     <Compile Include="Patterns\IView.cs" />
