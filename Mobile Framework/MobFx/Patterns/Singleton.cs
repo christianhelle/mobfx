@@ -23,5 +23,19 @@ namespace ChristianHelle.Framework.WindowsMobile.Patterns
                 return instance;
             }
         }
+
+        /// <summary>
+        /// Checks if the instance is of type <see cref="IDisposable"/> then calls Dispose().
+        /// The instance is then set to NULL
+        /// </summary>
+        public static void Dispose()
+        {
+            if (instance == null)
+                return;
+            var disposable = instance as IDisposable;
+            if (disposable != null)
+                disposable.Dispose();
+            instance = null;
+        }
     }
 }
