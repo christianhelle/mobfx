@@ -69,13 +69,27 @@ namespace ChristianHelle.Framework.WindowsMobile
         /// </param>
         public static void Run(MobileForm form)
         {
+            Run(form, false);
+        }
+
+        /// <summary>
+        /// Begins running a standard application message loop on the current 
+        /// thread, and makes the specified form visible.
+        /// </summary>
+        /// <param name="form">
+        /// A <see cref="MobileForm"/> that represents the main form of the 
+        /// application to make visible.
+        /// </param>
+        public static void Run(MobileForm form, bool enableKioskMode)
+        {
             var hwnd = SystemWindow.FindWindow(form.Name, form.Text);
             if (hwnd != IntPtr.Zero)
                 return;
 
             form.Load += delegate
             {
-                ForceKioskMode(form);
+                if (enableKioskMode)
+                    ForceKioskMode(form);
                 SplashScreen.Hide();
             };
 
@@ -92,7 +106,7 @@ namespace ChristianHelle.Framework.WindowsMobile
             SplashScreen.Show();
 
             var instance = Activator.CreateInstance<T>();
-            Run((MobileForm)instance.FormView);
+            Run((MobileForm)instance.FormView, false);
         }
 
         /// <summary>
@@ -104,6 +118,18 @@ namespace ChristianHelle.Framework.WindowsMobile
         /// <param name="loginForm">Login form</param>
         public static void RunWithLogin(MobileForm loginForm)
         {
+            RunWithLogin(loginForm, false);
+        }
+
+        /// <summary>
+        /// Loads a login dialog that forces the user 
+        /// to log into the application before using it. If the login is 
+        /// successful (Meaning the DialogResult is set to 
+        /// OK) then the Main Form is loaded.
+        /// </summary>
+        /// <param name="loginForm">Login form</param>
+        public static void RunWithLogin(MobileForm loginForm, bool enableKioskMode)
+        {
             SplashScreen.Show();
 
             loginForm.Load += (sender, e) => ForceKioskMode(loginForm);
@@ -114,7 +140,8 @@ namespace ChristianHelle.Framework.WindowsMobile
                     return;
 
                 var smartMenuView = (MobileForm)presenter.View;
-                ForceKioskMode(smartMenuView);
+                if (enableKioskMode)
+                    ForceKioskMode(smartMenuView);
 
                 SplashScreen.Hide();
 
@@ -134,6 +161,19 @@ namespace ChristianHelle.Framework.WindowsMobile
         /// <param name="mainForm">Main form</param>
         public static void RunWithLogin(MobileForm loginForm, MobileForm mainForm)
         {
+            RunWithLogin(loginForm, mainForm, false);
+        }
+
+        /// <summary>
+        /// Loads a login dialog that forces the user 
+        /// to log into the application before using it. If the login is 
+        /// successful (Meaning the DialogResult is set to 
+        /// OK) then the Main Form is loaded.
+        /// </summary>
+        /// <param name="loginForm">Login form</param>
+        /// <param name="mainForm">Main form</param>
+        public static void RunWithLogin(MobileForm loginForm, MobileForm mainForm, bool enableKioskMode)
+        {
             var loginHwnd = SystemWindow.FindWindow(loginForm.Name, loginForm.Text);
             var mainHwnd = SystemWindow.FindWindow(mainForm.Name, mainForm.Text);
             if (loginHwnd != IntPtr.Zero || mainHwnd != IntPtr.Zero)
@@ -141,7 +181,8 @@ namespace ChristianHelle.Framework.WindowsMobile
 
             SplashScreen.Show();
 
-            loginForm.Load += (sender, e) => ForceKioskMode(loginForm);
+            if (enableKioskMode)
+                loginForm.Load += (sender, e) => ForceKioskMode(loginForm);
             var dialogResult = loginForm.ShowDialog();
             if (dialogResult != DialogResult.OK)
                 return;
@@ -160,11 +201,25 @@ namespace ChristianHelle.Framework.WindowsMobile
         /// </typeparam>
         public static void RunWithLogin<TLogin>() where TLogin : FormPresenter
         {
+            RunWithLogin<TLogin>(false);
+        }
+
+        /// <summary>
+        /// Loads a login dialog that forces the user to log into the application before using it.
+        /// If the login is successful (meaning the DialogResult is set to OK) then the smart menu
+        /// form is loaded.
+        /// </summary>
+        /// <typeparam name="TLogin">
+        /// Type of the <see cref="FormPresenter"/> that represents the login dialog
+        /// </typeparam>
+        public static void RunWithLogin<TLogin>(bool enableKioskMode) where TLogin : FormPresenter
+        {
             SplashScreen.Show();
 
             var instance = Activator.CreateInstance<TLogin>();
             var loginForm = (Form)instance.FormView;
-            loginForm.Load += (sender, e) => ForceKioskMode(loginForm);
+            if (enableKioskMode)
+                loginForm.Load += (sender, e) => ForceKioskMode(loginForm);
 
             using (var presenter = new SmartMenuPresenter())
             {
@@ -186,7 +241,7 @@ namespace ChristianHelle.Framework.WindowsMobile
 
         /// <summary>
         /// Loads a login dialog that forces the user to log into the application before using it.
-        /// If the login is successful (meaning the DialogResult is set to OK) then the smart menu
+        /// If the login is successful (meaning the DialogResult is set to OK) then the specified main
         /// form is loaded.
         /// </summary>
         /// <typeparam name="TLogin">
@@ -195,7 +250,29 @@ namespace ChristianHelle.Framework.WindowsMobile
         /// <typeparam name="TMain">
         /// Type of the <see cref="FormPresenter"/> that represents the main dialog
         /// </typeparam>
+        /// <remarks>This methods will start the application without kiosk mode</remarks>
         public static void RunWithLogin<TLogin, TMain>()
+            where TLogin : FormPresenter
+            where TMain : FormPresenter
+        {
+            RunWithLogin<TLogin, TMain>(false);
+        }
+
+        /// <summary>
+        /// Loads a login dialog that forces the user to log into the application before using it.
+        /// If the login is successful (meaning the DialogResult is set to OK) then the specified main
+        /// form is loaded.
+        /// </summary>
+        /// <typeparam name="TLogin">
+        /// Type of the <see cref="FormPresenter"/> that represents the login dialog
+        /// </typeparam>
+        /// <typeparam name="TMain">
+        /// Type of the <see cref="FormPresenter"/> that represents the main dialog
+        /// </typeparam>
+        /// <param name="enableKioskMode">
+        /// Set to <c>true</c> to run the application in kiosk mode (full screen)
+        /// </param>
+        public static void RunWithLogin<TLogin, TMain>(bool enableKioskMode)
             where TLogin : FormPresenter
             where TMain : FormPresenter
         {
@@ -203,7 +280,8 @@ namespace ChristianHelle.Framework.WindowsMobile
 
             var instance = Activator.CreateInstance<TLogin>();
             var loginForm = (Form)instance.FormView;
-            loginForm.Load += (sender, e) => ForceKioskMode(loginForm);
+            if (enableKioskMode)
+                loginForm.Load += (sender, e) => ForceKioskMode(loginForm);
 
             var mainForm = Activator.CreateInstance<TMain>();
             SplashScreen.Hide();
