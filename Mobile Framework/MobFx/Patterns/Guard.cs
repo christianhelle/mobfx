@@ -18,7 +18,7 @@ namespace ChristianHelle.Framework.WindowsMobile.Patterns
         public static void ArgumentNull(object argument, string name)
         {
             if (argument == null)
-                throw new ArgumentNullException("name");
+                throw new ArgumentNullException(name);
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace ChristianHelle.Framework.WindowsMobile.Patterns
         public static void ArgumentNullOrEmpty(string argument, string name)
         {
             if (string.IsNullOrEmpty(argument))
-                throw new ArgumentNullException("name");
+                throw new ArgumentNullException(name);
         }
     }
 }
