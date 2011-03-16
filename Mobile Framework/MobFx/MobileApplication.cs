@@ -1,7 +1,6 @@
 ﻿#region Imported Namespaces
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using ChristianHelle.Framework.WindowsMobile.Core;
@@ -10,7 +9,6 @@ using ChristianHelle.Framework.WindowsMobile.Forms;
 using ChristianHelle.Framework.WindowsMobile.Forms.SmartMenu;
 using ChristianHelle.Framework.WindowsMobile.Patterns;
 using Microsoft.WindowsCE.Forms;
-using ChristianHelle.Framework.WindowsMobile.Barcode;
 
 #endregion
 
@@ -80,6 +78,7 @@ namespace ChristianHelle.Framework.WindowsMobile
         /// A <see cref="MobileForm"/> that represents the main form of the 
         /// application to make visible.
         /// </param>
+        /// <param name="enableKioskMode">Set to <c>true</c> to run the application in kiosk mode, otherwise <c>false</c></param>
         public static void Run(MobileForm form, bool enableKioskMode)
         {
             var hwnd = SystemWindow.FindWindow(form.Name, form.Text);
@@ -128,6 +127,7 @@ namespace ChristianHelle.Framework.WindowsMobile
         /// OK) then the Main Form is loaded.
         /// </summary>
         /// <param name="loginForm">Login form</param>
+        /// <param name="enableKioskMode">Set to <c>true</c> to run the application in kiosk mode, otherwise <c>false</c></param>
         public static void RunWithLogin(MobileForm loginForm, bool enableKioskMode)
         {
             SplashScreen.Show();
@@ -172,6 +172,7 @@ namespace ChristianHelle.Framework.WindowsMobile
         /// </summary>
         /// <param name="loginForm">Login form</param>
         /// <param name="mainForm">Main form</param>
+        /// <param name="enableKioskMode">Set to <c>true</c> to run the application in kiosk mode, otherwise <c>false</c></param>
         public static void RunWithLogin(MobileForm loginForm, MobileForm mainForm, bool enableKioskMode)
         {
             var loginHwnd = SystemWindow.FindWindow(loginForm.Name, loginForm.Text);
@@ -212,6 +213,7 @@ namespace ChristianHelle.Framework.WindowsMobile
         /// <typeparam name="TLogin">
         /// Type of the <see cref="FormPresenter"/> that represents the login dialog
         /// </typeparam>
+        /// <param name="enableKioskMode">Set to <c>true</c> to run the application in kiosk mode, otherwise <c>false</c></param>
         public static void RunWithLogin<TLogin>(bool enableKioskMode) where TLogin : FormPresenter
         {
             SplashScreen.Show();
@@ -272,6 +274,7 @@ namespace ChristianHelle.Framework.WindowsMobile
         /// <param name="enableKioskMode">
         /// Set to <c>true</c> to run the application in kiosk mode (full screen)
         /// </param>
+        /// <param name="enableKioskMode">Set to <c>true</c> to run the application in kiosk mode, otherwise <c>false</c></param>
         public static void RunWithLogin<TLogin, TMain>(bool enableKioskMode)
             where TLogin : FormPresenter
             where TMain : FormPresenter

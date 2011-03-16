@@ -40,7 +40,7 @@ namespace ChristianHelle.Framework.WindowsMobile.Forms
             if (!showWaitForm)
                 return;
 
-            var waitForm = Singleton<WaitForm>.GetInstance();
+            var waitForm = Singleton<WaitForm>.Instance;
             if (!MobileApplication.DispoableResources.ContainsKey("WaitForm"))
                 MobileApplication.DispoableResources.Add("WaitForm", waitForm);
 
@@ -63,12 +63,12 @@ namespace ChristianHelle.Framework.WindowsMobile.Forms
         {
             get
             {
-                var waitForm = Singleton<WaitForm>.GetInstance();
+                var waitForm = Singleton<WaitForm>.Instance;
                 return waitForm != null ? waitForm.Header.Text : null;
             }
             set
             {
-                var waitForm = Singleton<WaitForm>.GetInstance();
+                var waitForm = Singleton<WaitForm>.Instance;
                 if (waitForm == null) return;
                 waitForm.Header.Text = value;
                 waitForm.Header.Update();
@@ -83,12 +83,12 @@ namespace ChristianHelle.Framework.WindowsMobile.Forms
         {
             get
             {
-                var waitForm = Singleton<WaitForm>.GetInstance();
+                var waitForm = Singleton<WaitForm>.Instance;
                 return waitForm != null ? waitForm.Message.Text : null;
             }
             set
             {
-                var waitForm = Singleton<WaitForm>.GetInstance();
+                var waitForm = Singleton<WaitForm>.Instance;
                 if (waitForm == null) return;
                 waitForm.Message.Text = value;
                 waitForm.Message.Update();
@@ -132,7 +132,7 @@ namespace ChristianHelle.Framework.WindowsMobile.Forms
         /// </summary>
         public void Dispose()
         {
-            var waitForm = Singleton<WaitForm>.GetInstance();
+            var waitForm = Singleton<WaitForm>.Instance;
             if (waitForm != null && waitForm.Visible)
                 waitForm.Hide();
 

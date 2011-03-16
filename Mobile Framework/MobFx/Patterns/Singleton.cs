@@ -14,13 +14,16 @@ namespace ChristianHelle.Framework.WindowsMobile.Patterns
         /// Retrieves the static instance of the specified type parameter
         /// </summary>
         /// <returns>Returns the static of the specified type parameter</returns>
-        public static T GetInstance()
+        public static T Instance
         {
-            lock (staticLock)
+            get
             {
-                if (instance == null)
-                    instance = Activator.CreateInstance<T>();
-                return instance;
+                lock (staticLock)
+                {
+                    if (instance == null)
+                        instance = Activator.CreateInstance<T>();
+                    return instance;
+                }
             }
         }
 

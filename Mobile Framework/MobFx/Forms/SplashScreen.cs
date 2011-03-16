@@ -35,7 +35,7 @@ namespace ChristianHelle.Framework.WindowsMobile.Forms
             if (Visible)
                 return;
 
-            var instance = Singleton<SplashScreenForm>.GetInstance();
+            var instance = Singleton<SplashScreenForm>.Instance;
             instance.Show();
             Visible = true;
         }
@@ -48,7 +48,7 @@ namespace ChristianHelle.Framework.WindowsMobile.Forms
             if (!Visible) 
                 return;
 
-            var instance = Singleton<SplashScreenForm>.GetInstance();
+            var instance = Singleton<SplashScreenForm>.Instance;
             instance.Dispose();
             instance = null;
             Visible = false;

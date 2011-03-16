@@ -58,7 +58,7 @@ namespace ChristianHelle.Framework.WindowsMobile.Diagnostics
         /// </summary>
         public static ErrorLogFile Instance
         {
-            get { return Singleton<ErrorLogFile>.GetInstance(); }
+            get { return Singleton<ErrorLogFile>.Instance; }
         }
 
         /// <summary>
