@@ -2,6 +2,7 @@
 
 using System;
 using System.Windows.Forms;
+using ChristianHelle.Framework.WindowsMobile.Forms;
 
 #endregion
 
@@ -72,7 +73,19 @@ namespace ChristianHelle.Framework.WindowsMobile.Patterns
         /// <returns>Returns the <see cref="DialogResult"/> returned by the displayed form</returns>
         public static DialogResult OpenModalDialog<T>(IFormView owner) where T : FormPresenter, new()
         {
-            using (var presenter = Activator.CreateInstance<T>())
+            return OpenModalDialog<T>(owner, false);
+        }
+
+        /// <summary>
+        /// Opens a form as a modal dialog
+        /// </summary>
+        /// <typeparam name="T">Presenter of the UI</typeparam>
+        /// <param name="owner">The owner of the form as <see cref="IFormView"/></param>
+        /// <param name="displayWaitCursor">Set to <c>true</c> to display a busy cursor during instantiation</param>
+        /// <returns>Returns the <see cref="DialogResult"/> returned by the displayed form</returns>
+        public static DialogResult OpenModalDialog<T>(IFormView owner, bool displayWaitCursor) where T : FormPresenter, new()
+        {
+            using (var presenter = CreatePresenter<T>(displayWaitCursor))
             {
                 if (!(presenter.FormView is Form))
                     throw new ArgumentException("the FormView of the presenter parameter is not of type Form");
@@ -81,6 +94,26 @@ namespace ChristianHelle.Framework.WindowsMobile.Patterns
                 SetFormOwner(owner, form);
 
                 return form.ShowDialog();
+            }
+        }
+
+        /// <summary>
+        /// Creates an instance of the specified <see cref="FormPresenter"/>
+        /// </summary>
+        /// <typeparam name="T">Presenter of the UI</typeparam>
+        /// <param name="displayWaitCursor">Set to <c>true</c> to display a busy cursor during instantiation</param>
+        /// <returns>Returns a new instance of <see cref="T"/></returns>
+        public static T CreatePresenter<T>(bool displayWaitCursor) where T : FormPresenter, new()
+        {
+            try
+            {
+                if (displayWaitCursor)
+                    WaitCursor.Show();
+                return Activator.CreateInstance<T>();
+            }
+            finally
+            {
+                WaitCursor.Hide();
             }
         }
 
@@ -97,19 +130,75 @@ namespace ChristianHelle.Framework.WindowsMobile.Patterns
             if (form == null)
                 throw new ArgumentNullException("form");
 
-            if (owner == null) 
+            if (owner == null)
                 return;
 
             if (!(owner is Form))
                 throw new ArgumentException("owner must be of type Form");
 
             form.Owner = owner as Form;
-            form.Load += (sender, e) => owner.Visible = false;
+            form.Activated += (sender, e) => owner.Visible = false;
             form.Closed += (sender, e) =>
-                               {
-                                   owner.Visible = true;
-                                   owner.Refresh();
-                               };
+            {
+                owner.Visible = true;
+                owner.BringToFront();
+                owner.Refresh();
+            };
+        }
+
+        /// <summary>
+        /// Creates an instance of a View. This method automatically sets the Parent and Owner properties of the Form
+        /// </summary>
+        /// <typeparam name="T">The view to instantiate</typeparam>
+        /// <param name="view">The owner and parent of this view</param>
+        /// <returns>Returns an instance of <see cref="T"/></returns>
+        public static T CreateView<T>(IFormView view) where T : Form, new()
+        {
+            return CreateView<T>(view as Form, false);
+        }
+
+        /// <summary>
+        /// Creates an instance of a View. This method automatically sets the Parent and Owner properties of the Form
+        /// </summary>
+        /// <typeparam name="T">The view to instantiate</typeparam>
+        /// <param name="view">The owner and parent of this view</param>
+        /// <param name="displayWaitCursor">Set to <c>true</c> to display a busy cursor during instantiation</param>
+        /// <returns>Returns an instance of <see cref="T"/></returns>
+        public static T CreateView<T>(IFormView view, bool displayWaitCursor) where T : Form, new()
+        {
+            return CreateView<T>(view as Form, displayWaitCursor);
+        }
+
+        /// <summary>
+        /// Creates an instance of a View. This method automatically sets the Parent and Owner properties of the Form
+        /// </summary>
+        /// <typeparam name="T">The view to instantiate</typeparam>
+        /// <param name="form">The owner and parent of this view</param>
+        /// <returns>Returns an instance of <see cref="T"/></returns>
+        public static T CreateView<T>(Form form) where T : Form, new()
+        {
+            return CreateView<T>(form, false);
+        }
+
+        /// <summary>
+        /// Creates an instance of a View. This method automatically sets the Parent and Owner properties of the Form
+        /// </summary>
+        /// <typeparam name="T">The view to instantiate</typeparam>
+        /// <param name="form">The owner and parent of this view</param>
+        /// <param name="displayWaitCursor">Set to <c>true</c> to display a busy cursor during instantiation</param>
+        /// <returns>Returns an instance of <see cref="T"/></returns>
+        public static T CreateView<T>(Form form, bool displayWaitCursor) where T : Form, new()
+        {
+            try
+            {
+                if (displayWaitCursor)
+                    WaitCursor.Show();
+                return new T { Owner = form };
+            }
+            finally
+            {
+                WaitCursor.Hide();
+            }
         }
     }
 }

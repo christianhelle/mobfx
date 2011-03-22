@@ -41,11 +41,9 @@ namespace ChristianHelle.Framework.WindowsMobile.Patterns
         {
             base.Dispose();
 
-            if (FormView != null)
-            {
-                FormView.Dispose();
-                FormView = null;
-            }
+            if (FormView == null) return;
+            FormView.Dispose();
+            FormView = null;
         }
 
         /// <summary>
@@ -55,7 +53,18 @@ namespace ChristianHelle.Framework.WindowsMobile.Patterns
         /// <param name="modalDialog">Set to <c>true</c> to display the UI as a modal dialog</param>
         public DialogResult? OpenForm<T>(bool modalDialog) where T : FormPresenter, new()
         {
-            using (var presenter = Activator.CreateInstance<T>())
+            return OpenForm<T>(modalDialog, true);
+        }
+
+        /// <summary>
+        /// Opens a UI
+        /// </summary>
+        /// <typeparam name="T">UI Presenter</typeparam>
+        /// <param name="modalDialog">Set to <c>true</c> to display the UI as a modal dialog</param>
+        /// <param name="displayWaitCursor">Set to <c>true</c> to display a busy cursor during instantiation</param>
+        public DialogResult? OpenForm<T>(bool modalDialog, bool displayWaitCursor) where T : FormPresenter, new()
+        {
+            using (var presenter = ViewHelper.CreatePresenter<T>(displayWaitCursor))
                 return OpenForm(presenter, modalDialog);
         }
 
@@ -65,9 +74,21 @@ namespace ChristianHelle.Framework.WindowsMobile.Patterns
         /// <typeparam name="T">UI Presenter</typeparam>
         /// <param name="loadMethod">Method to execute when the UI loads</param>
         /// <param name="modalDialog">Set to <c>true</c> to display the UI as a modal dialog</param>
-        public DialogResult? OpenForm<T>(bool modalDialog, EventHandler loadMethod) where T:FormPresenter, new()
+        public DialogResult? OpenForm<T>(bool modalDialog, EventHandler loadMethod) where T : FormPresenter, new()
         {
-            using (var presenter = Activator.CreateInstance<T>())
+            return OpenForm<T>(modalDialog, loadMethod, true);
+        }
+
+        /// <summary>
+        /// Opens a UI
+        /// </summary>
+        /// <typeparam name="T">UI Presenter</typeparam>
+        /// <param name="loadMethod">Method to execute when the UI loads</param>
+        /// <param name="modalDialog">Set to <c>true</c> to display the UI as a modal dialog</param>
+        /// <param name="displayWaitCursor">Set to <c>true</c> to display a busy cursor during instantiation</param>
+        public DialogResult? OpenForm<T>(bool modalDialog, EventHandler loadMethod, bool displayWaitCursor) where T : FormPresenter, new()
+        {
+            using (var presenter = ViewHelper.CreatePresenter<T>(displayWaitCursor))
             {
                 presenter.FormView.ViewLoad += loadMethod;
                 return OpenForm(presenter, modalDialog);
@@ -113,8 +134,9 @@ namespace ChristianHelle.Framework.WindowsMobile.Patterns
         /// </summary>
         public void CloseView()
         {
-            if (FormView != null)
-                FormView.DialogResult = DialogResult.OK;
+            if (FormView == null) return;
+            FormView.DialogResult = DialogResult.OK;
+            FormView.Close();
         }
     }
 }

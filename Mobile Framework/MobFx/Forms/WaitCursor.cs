@@ -125,6 +125,22 @@ namespace ChristianHelle.Framework.WindowsMobile.Forms
             return waitCursor;
         }
 
+        /// <summary>
+        /// Displays the wait cursor
+        /// </summary>
+        public static void Show()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+        }
+
+        /// <summary>
+        /// Hides the wait cursor
+        /// </summary>
+        public static void Hide()
+        {
+            Cursor.Current = Cursors.Default;
+        }
+
         #region Implementation of IDisposable
 
         /// <summary>
